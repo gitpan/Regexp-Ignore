@@ -1,0 +1,6 @@
+Revision history for Perl extension Regexp::Ignore.
+
+0.01  Tue Dec 25 19:43:31 2001
+	- original version; created by h2xs 1.21 with options
+		-X -n Regexp::Ignore
+
