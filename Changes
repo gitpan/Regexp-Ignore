@@ -1,5 +1,10 @@
 Revision history for Perl extension Regexp::Ignore.
 
+0.03  Wed Oct  2 11:37:51 CEST 2002
+	- I had a stupid loop in the merge method. I changed it with 
+	  one regexp line and got an extremely large performance 
+	  improvement on big files.
+
 0.02  Tue Sep 24 14:11:39 CEST 2002
         - Fixed the copyright notice. 
         - Changed IgnoreTextCharacteristicsHTML::get_tokens - was

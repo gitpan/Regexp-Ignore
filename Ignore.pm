@@ -4,7 +4,7 @@ use 5.006;
 use strict;
 use warnings;
 
-our $VERSION = '0.02';
+our $VERSION = '0.03';
 
 #############################################################
 # new($original_text, $delimiter_pattern)
@@ -376,16 +376,9 @@ sub merge {
     $re =~ s/__INDEX__/\(\[\\d\]\+\)/g;
     $re = qr/$re/;
     # the buffer will hold the resulted text
-    my $buffer = "";
-
-    # get back the clean tokens from the delimited text.    
-    while ($delimited_text &&
-	   $delimited_text =~ /$re/s) {
-	$buffer .= $`.$self->{TOKENS}[$1];
-	$delimited_text = $';
-    }
-    # add the rest of the text to the buffer
-    $buffer .= $delimited_text;
+    my $buffer = $delimited_text;
+    # instead of the pattern, put back the unwanted tokens 
+    $buffer =~ s/$re/$self->{TOKENS}[$1]/g;
 
     # return all the tokens as the text
     $self->{TEXT} = $buffer;
