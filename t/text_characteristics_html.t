@@ -63,7 +63,6 @@ for (my $k = 0; $k <= 3; $k++) {
 	    $rei->ignore_html_remarks(0);
 	}
 	
-	
 	unless ($GENERATE_TEST_FILES) {
 	    print_ok($rei, 2 + $j, 
 		     "Regexp::IgnoreTextCharacteristicsHTML ".

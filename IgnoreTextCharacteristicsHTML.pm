@@ -14,26 +14,26 @@ sub new {
     # the tags to be ignored
     $self->{IGNORE_TAGS} = { B => 1,
 			     BASEFONT => 1,
-			     BIG => 1, 
-			     BLINK => 1, 
-			     CITE => 1, 
-			     CODE => 1, 
-			     EM => 1, 
+			     BIG => 1,
+			     BLINK => 1,
+			     CITE => 1,
+			     CODE => 1,
+			     EM => 1,
 			     FONT => 1,
-			     I => 1, 
-			     KBD => 1, 
-			     PLAINTEXT => 1, 
-			     S => 1, 
-			     SMALL => 1, 
-			     STRIKE => 1, 
-			     STRONG => 1, 
-			     SUB => 1, 
-			     SUP => 1, 
-			     TT => 1, 
-			     U => 1, 
-			     VAR => 1, 
-			     A => 1, 
-			     SPAN => 1, 
+			     I => 1,
+			     KBD => 1,
+			     PLAINTEXT => 1,
+			     S => 1,
+			     SMALL => 1,
+			     STRIKE => 1,
+			     STRONG => 1,
+			     SUB => 1,
+			     SUP => 1,
+			     TT => 1,
+			     U => 1,
+			     VAR => 1,
+			     A => 1,
+			     SPAN => 1,
 			     WBR => 1 };
     $self->build_regular_expressions();
     return $self;
@@ -63,10 +63,10 @@ sub build_regular_expressions {
     # if the tag that we found is one of the following, it is unwanted
     # token. 
     my $re2 = "";
-    if (1 || $self->{IGNORE_HTML_REMARKS}) {
+    if ($self->{IGNORE_HTML_REMARKS}) {
 	$re2 = '(<\!\-\-.+?\-\->)|';
     }
-    if (1 || $self->{IGNORE_WORD_REMARKS}) {
+    if ($self->{IGNORE_WORD_REMARKS}) {
 	$re2 .= '(<\!\[[^\]]*?\]>)|<\/?\s*[OVWXP]\:[^>]*?>|';
     }
     foreach my $tag ($self->tags_to_ignore()) {
@@ -99,6 +99,7 @@ sub tags_to_ignore {
     my $changed = 0;
     while (@_) {
 	my $tag = shift;
+	$changed = 1;
 	$self->{IGNORE_TAGS}{uc($tag)} = 1;
     }
     if ($changed) {
@@ -161,7 +162,7 @@ sub get_tokens {
     my $re2 = $self->{RE2};
 
     while (defined($text) && $text =~ /$re1/) {
-	if ($`) { # if there is a text before, take it as clean
+	if (length($`)) { # if there is a text before, take it as clean
 	    $tokens->[$index] = $`;
 	    $flags->[$index] = 1; # the text before the match is clean. 
 	    $index++; # increment the index
@@ -275,7 +276,7 @@ Rani Pinchuk, E<lt>rani@cpan.orgE<gt>
 
 =head1 COPYRIGHT
 
-Copyright (c) 2002 WAM!NET EOC Belgium N.V. & Rani Pinchuk. All rights 
+Copyright (c) 2002 Ockham Technology N.V. & Rani Pinchuk. All rights 
 reserved. This package is free software; you can redistribute it and/or 
 modify it under the same terms as Perl itself. 
 

@@ -4,7 +4,7 @@ use 5.006;
 use strict;
 use warnings;
 
-our $VERSION = '0.01';
+our $VERSION = '0.02';
 
 #############################################################
 # new($original_text, $delimiter_pattern)
@@ -957,7 +957,7 @@ Rani Pinchuk, E<lt>rani@cpan.orgE<gt>
 
 =head1 COPYRIGHT
 
-Copyright (c) 2002 WAM!NET EOC Belgium N.V. & Rani Pinchuk. All rights 
+Copyright (c) 2002 Ockham Technology N.V. & Rani Pinchuk. All rights 
 reserved. This package is free software; you can redistribute it and/or 
 modify it under the same terms as Perl itself. 
 
